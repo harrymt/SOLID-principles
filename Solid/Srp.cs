@@ -12,4 +12,41 @@ namespace Solid
         }
     }
 
+    // Good Way, not violating the single responsibility principle
+    class Customer
+    {
+        var logger = new FileLogger();
+        public void Add(Database db)
+        {
+            try {
+                db.AddNewCustomer();
+            }
+            catch (Exception ex)
+            {
+                logger.Handle(ex.ToString());
+            }
+        }
+    }
+    class FileLogger
+    {
+        void Handle(string error)
+        {
+            File.WriteAllText(@"C:\Error.txt", ex.ToString());
+        }
+    }
+
+    // Violating the Single Responsibility Principle
+    class CustomerBad
+    {
+        public void Add(Database db)
+        {
+            try {
+                db.AddNewCustomer();
+            }
+            catch (Exception ex)
+            {
+                File.WriteAllText(@"C:\Error.txt", ex.ToString());
+            }
+        }
+    }
 }

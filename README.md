@@ -11,6 +11,8 @@ Code examples of the SOLID principles.
 
 #### Single Responsibility Principle
 
+- SRP: [Srp.cs](Solid/Srp.cs)
+
 
 #### Open for Extension Closed for Modification
 
