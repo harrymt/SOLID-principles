@@ -8,6 +8,7 @@ namespace Solid
     {
         public string Principle()
         {
+            return "Depen"
         }
     }
 }

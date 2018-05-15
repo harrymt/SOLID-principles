@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace Solid
 {
@@ -12,10 +11,29 @@ namespace Solid
         }
     }
 
-    // Good Way, not violating the single responsibility principle
-    class Customer
+    // Violating the Single Responsibility Principle
+    class CustomerBad
     {
-        var logger = new FileLogger();
+        public void Add(Database db)
+        {
+            try
+            {
+                db.AddNewCustomer();
+            }
+            catch (Exception ex)
+            {
+                File.WriteAllText(@"C:\Error.txt", ex.ToString());
+            }
+        }
+    }
+
+
+
+
+    // Good Way, not violating the single responsibility principle
+    class GoodCustomer
+    {
+        private FileLogger logger = new FileLogger();
         public void Add(Database db)
         {
             try {
@@ -29,24 +47,35 @@ namespace Solid
     }
     class FileLogger
     {
-        void Handle(string error)
+        public void Handle(string error)
         {
-            File.WriteAllText(@"C:\Error.txt", ex.ToString());
+            File.WriteAllText(@"C:\Error.txt", error);
         }
     }
 
-    // Violating the Single Responsibility Principle
-    class CustomerBad
+
+
+    // Even Better Way
+    class Wrapper
+    {
+        public void HandleAdd(FileLogger logger, Database db, Customer customer)
+        {
+            try
+            {
+                customer.Add(db);
+            }
+            catch (Exception error)
+            {
+                logger.Handle(error.ToString());
+            }
+        }
+    }
+
+    class Customer
     {
         public void Add(Database db)
         {
-            try {
-                db.AddNewCustomer();
-            }
-            catch (Exception ex)
-            {
-                File.WriteAllText(@"C:\Error.txt", ex.ToString());
-            }
+            db.AddNewCustomer();
         }
     }
 }
