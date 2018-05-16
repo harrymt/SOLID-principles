@@ -4,8 +4,19 @@ using System.Text;
 
 namespace Solid
 {
-    class Utilities
+    public class Customer
     {
+        public int BaseDiscount = 10;
+
+        public virtual int Discount(int sales)
+        {
+            return BaseDiscount - sales;
+        }
+
+        public virtual void Add(Database db)
+        {
+            db.AddNewCustomer();
+        }
     }
 
     public class Database
