@@ -12,8 +12,10 @@ namespace Solid
     }
 
     // Violating the Single Responsibility Principle
-    class CustomerBad
+    class CustomerBadSRP
     {
+        // This Add method does too much,
+        // it shouldnt know how to write to the log and add a customer
         public void Add(Database db)
         {
             try
@@ -31,7 +33,8 @@ namespace Solid
 
 
     // Good Way, not violating the single responsibility principle
-    class GoodCustomer
+    // Now we abstract the logger, so its just writing the error.
+    class CustomerBetterSRP
     {
         private FileLogger logger = new FileLogger();
         public void Add(Database db)
@@ -56,9 +59,11 @@ namespace Solid
 
 
     // Even Better Way
+    // Even better, the customer only knows how to add, and we
+    // wrap the add method in an error handler.
     class Wrapper
     {
-        public void HandleAdd(FileLogger logger, Database db, Customer customer)
+        public void HandleAdd(FileLogger logger, Database db, CustomerBestSRP customer)
         {
             try
             {
@@ -71,7 +76,7 @@ namespace Solid
         }
     }
 
-    class Customer
+    class CustomerBestSRP
     {
         public void Add(Database db)
         {
