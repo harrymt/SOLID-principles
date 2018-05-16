@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Solid
+﻿namespace Solid.OpenClosed
 {
     class Ocp : IPrinciple
     {
@@ -16,11 +12,11 @@ namespace Solid
     // This is bad, because at the moment, there are 2 types
     // of customer, if we want to add another customer type
     // we have to add a `if else` below. So Modifying the existing code
-    class CustomerBadOCP
+    internal class Customer
     {
         public int Type;
 
-        public void Add(Database db)
+        public virtual void Add(Database db)
         {
             if (Type == 0)
             {
@@ -35,7 +31,7 @@ namespace Solid
 
     // This is better, because we structure the code so its
     // easier to extend and hard to modify
-    class CustomerOCP
+    internal class CustomerBetter
     {
         public virtual void Add(Database db)
         {
@@ -43,7 +39,7 @@ namespace Solid
         }
     }
 
-    class ExistingCustomerOCP : CustomerOCP
+    internal class ExistingCustomer : CustomerBetter
     {
         public override void Add(Database db)
         {
@@ -51,7 +47,7 @@ namespace Solid
         }
     }
 
-    class AnotherCustomerTypeOCP : CustomerOCP
+    internal class AnotherCustomer : CustomerBetter
     {
         public override void Add(Database db)
         {
