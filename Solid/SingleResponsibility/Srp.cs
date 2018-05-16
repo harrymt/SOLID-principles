@@ -48,7 +48,7 @@ namespace Solid.SingleResponsibility
             }
         }
     }
-    class FileLogger
+    internal class FileLogger
     {
         public void Handle(string error)
         {
