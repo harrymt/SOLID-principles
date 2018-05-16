@@ -11,5 +11,9 @@ namespace Solid
     public class Database
     {
         public void AddNewCustomer() { }
+
+        public void AddExistingCustomer() { }
+
+        public void AnotherExtension() { }
     }
 }
