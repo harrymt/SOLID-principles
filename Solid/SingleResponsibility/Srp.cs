@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Solid
+namespace Solid.SingleResponsibility
 {
     class Srp : IPrinciple
     {
@@ -12,7 +12,7 @@ namespace Solid
     }
 
     // Violating the Single Responsibility Principle
-    class CustomerBadSRP
+    internal class Customer
     {
         // This Add method does too much,
         // it shouldnt know how to write to the log and add a customer
@@ -34,7 +34,7 @@ namespace Solid
 
     // Good Way, not violating the single responsibility principle
     // Now we abstract the logger, so its just writing the error.
-    class CustomerBetterSRP
+    class CustomerBetter
     {
         private FileLogger logger = new FileLogger();
         public void Add(Database db)
@@ -61,9 +61,10 @@ namespace Solid
     // Even Better Way
     // Even better, the customer only knows how to add, and we
     // wrap the add method in an error handler.
+    // @see Utilities/Customer
     class Wrapper
     {
-        public void HandleAdd(FileLogger logger, Database db, CustomerBestSRP customer)
+        public void HandleAdd(FileLogger logger, Database db, Customer customer)
         {
             try
             {
@@ -76,11 +77,4 @@ namespace Solid
         }
     }
 
-    class CustomerBestSRP
-    {
-        public void Add(Database db)
-        {
-            db.AddNewCustomer();
-        }
-    }
 }
