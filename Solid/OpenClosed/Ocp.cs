@@ -20,7 +20,7 @@
         {
             if (Type == 0)
             {
-                db.AddNewCustomer();
+                db.Add();
             }
             else
             {
@@ -35,7 +35,7 @@
     {
         public virtual void Add(Database db)
         {
-            db.AddNewCustomer();
+            db.Add();
         }
     }
 

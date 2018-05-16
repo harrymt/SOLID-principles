@@ -84,7 +84,7 @@ namespace Solid.Liskov
 
             public void Add(Database db)
             {
-                db.AddNewCustomer();
+                db.Add();
             }
         }
 
@@ -104,7 +104,7 @@ namespace Solid.Liskov
             }
         }
 
-        // Now, we don't violate Liskov Substitution principle
+        // GOOD: Now, we don't violate Liskov Substitution principle
         class AdheringToLiskovs
         {
             public void ParseCustomers()

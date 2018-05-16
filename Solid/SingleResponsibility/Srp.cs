@@ -20,7 +20,7 @@ namespace Solid.SingleResponsibility
         {
             try
             {
-                db.AddNewCustomer();
+                db.Add();
             }
             catch (Exception ex)
             {
@@ -40,7 +40,7 @@ namespace Solid.SingleResponsibility
         public void Add(Database db)
         {
             try {
-                db.AddNewCustomer();
+                db.Add();
             }
             catch (Exception ex)
             {

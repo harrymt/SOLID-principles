@@ -15,16 +15,22 @@ namespace Solid
 
         public virtual void Add(Database db)
         {
-            db.AddNewCustomer();
+            db.Add();
         }
     }
 
-    public class Database
+    public class Database : IDatabase
     {
-        public void AddNewCustomer() { }
+        public void Add() { }
 
         public void AddExistingCustomer() { }
 
         public void AnotherExtension() { }
     }
+
+    public interface IDatabase
+    {
+        void Add();
+    }
+
 }
