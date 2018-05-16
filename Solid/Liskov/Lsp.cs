@@ -8,7 +8,7 @@ namespace Solid.Liskov
     {
         public string Principle()
         {
-            return "Liskov Substitution Principle";
+            return "Liskov Substitution";
         }
 
         // BAD: Violating Liskov substitution principle

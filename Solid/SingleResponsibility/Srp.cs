@@ -7,7 +7,7 @@ namespace Solid.SingleResponsibility
     {
         public string Principle()
         {
-            return "Single Responsibility Principle";
+            return "Single Responsibility";
         }
     }
 

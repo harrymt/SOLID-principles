@@ -4,7 +4,7 @@
     {
         public string Principle()
         {
-            return "Open for Extension, Closed for Modification.";
+            return "Open for Extension, Closed for Modification";
         }
     }
 

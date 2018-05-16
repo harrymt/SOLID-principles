@@ -1,4 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using Solid.DependencyInversion;
+using Solid.InterfaceSegregation;
+using Solid.Liskov;
+using Solid.OpenClosed;
+using Solid.SingleResponsibility;
 
 namespace Solid
 {
@@ -6,15 +12,21 @@ namespace Solid
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("SOLID Principles");
+            Console.WriteLine("SOLID Principles:");
 
-            var s = new Srp().Principle();
-            var o = new Ocp().Principle();
-            var l = new Lsp().Principle();
-            var i = new Isp().Principle();
-            var d = new Dip().Principle();
-
-            Console.WriteLine(s, o, l, i, d);
+            var principles = new List<IPrinciple>()
+            {
+                new Srp(),
+                new Ocp(),
+                new Lsp(),
+                new Isp(),
+                new Dip()
+            };
+            principles.ForEach(type =>
+            {
+                Console.WriteLine($"- {type.Principle()}");
+            });
+            Console.Read();
         }
     }
 }
