@@ -298,7 +298,7 @@ void ManipulateCustomers()
 
 > High level modules should not depend on low-level modules, but should depend on abstraction.
 
-- Code example [Ocp.cs](Solid/OpenClosed/Ocp.cs)
+- Code example [Dip.cs](Solid/DependencyInversion/Dip.cs)
 
 ##### Bad Way
 
